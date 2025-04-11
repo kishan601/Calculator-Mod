@@ -52,18 +52,13 @@ export function CalculatorButton({
     }
   };
 
-  // Display the correct operator symbols for tests to find
-  const displayValue = value === '*' ? '×' : 
-                       value === '/' ? '÷' : 
-                       value === '-' ? '−' : value;
-
   return (
     <button
       type="button"
       onClick={onClick}
       style={getButtonStyle()}
     >
-      {displayValue}
+      {value}
     </button>
   );
 }

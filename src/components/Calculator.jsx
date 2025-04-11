@@ -139,7 +139,7 @@ export function Calculator() {
               variant="operator" 
             />
             <CalculatorButton 
-              value="÷" 
+              value="/" 
               onClick={() => handleOperator('/')} 
               variant="operator" 
             />
@@ -161,7 +161,7 @@ export function Calculator() {
               variant="number" 
             />
             <CalculatorButton 
-              value="×" 
+              value="*" 
               onClick={() => handleOperator('*')} 
               variant="operator" 
             />
@@ -183,7 +183,7 @@ export function Calculator() {
               variant="number" 
             />
             <CalculatorButton 
-              value="−" 
+              value="-" 
               onClick={() => handleOperator('-')} 
               variant="operator" 
             />

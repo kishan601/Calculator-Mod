@@ -63,11 +63,21 @@ export function Calculator() {
     color: 'white'
   };
 
-// Update just the displayStyle inside Calculator.jsx
-const displayStyle = {
+  const displayStyle = {
     padding: '1rem',
     backgroundColor: '#f9fafb',
     borderBottom: '1px solid #e5e7eb'
+  };
+
+  const resultStyle = {
+    marginTop: '0.5rem',
+    padding: '0.5rem',
+    textAlign: 'right',
+    fontSize: '1.25rem',
+    fontWeight: '500',
+    backgroundColor: 'white',
+    border: '1px solid #d1d5db',
+    borderRadius: '0.25rem'
   };
 
   const buttonsContainerStyle = {
@@ -99,10 +109,10 @@ const displayStyle = {
         <div style={displayStyle}>
           <CalculatorDisplay value={displayValue} />
           
-          {/* Hidden div for test compatibility */}
+          {/* Visible result div for test compatibility */}
           {calculationResult && (
             <div 
-              style={{ display: 'none' }}
+              style={resultStyle}
               data-testid="calculation-result"
             >
               {calculationResult}

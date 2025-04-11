@@ -99,11 +99,47 @@ export function Calculator() {
     fontSize: '0.875rem'
   };
 
-  // These are specifically for the tests to find
-  const hiddenButtonStyle = {
-    position: 'absolute',
-    opacity: 0,
-    pointerEvents: 'none'
+  const buttonStyle = {
+    fontSize: '1.25rem',
+    padding: '1rem',
+    fontWeight: '400',
+    borderRadius: '0.25rem',
+    height: 'auto',
+    cursor: 'pointer',
+    transition: 'background-color 0.2s',
+    border: 'none',
+    outline: 'none',
+    width: '100%'
+  };
+
+  const numberButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: 'white',
+    color: '#374151',
+    border: '1px solid #e5e7eb',
+  };
+
+  const operatorButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#e5e7eb',
+    color: '#374151',
+  };
+
+  const clearButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#ef4444',
+    color: 'white',
+  };
+
+  const equalsButtonStyle = {
+    ...buttonStyle,
+    backgroundColor: '#2563eb',
+    color: 'white',
+  };
+
+  const zeroButtonStyle = {
+    ...numberButtonStyle,
+    gridColumn: 'span 2',
   };
 
   return (
@@ -117,135 +153,41 @@ export function Calculator() {
           <CalculatorDisplay value={displayValue} />
           
           {/* Result div to display calculation results */}
-          {calculationResult && (
-            <div 
-              style={resultStyle}
-              data-testid="calculation-result"
-            >
-              {calculationResult}
-            </div>
-          )}
+          <div style={resultStyle} data-testid="calculation-result">
+            {calculationResult || ' '}
+          </div>
         </div>
         
         <div style={buttonsContainerStyle}>
           <div style={buttonGridStyle}>
             {/* First Row */}
-            <CalculatorButton 
-              value="C" 
-              onClick={handleClear} 
-              variant="clear" 
-            />
-            <CalculatorButton 
-              value="(" 
-              onClick={() => handleOperator('(')} 
-              variant="operator" 
-            />
-            <CalculatorButton 
-              value=")" 
-              onClick={() => handleOperator(')')} 
-              variant="operator" 
-            />
-            <CalculatorButton 
-              value="÷" 
-              onClick={() => handleOperator('/')} 
-              variant="operator" 
-            />
-            {/* Hidden buttons for tests */}
-            <button style={hiddenButtonStyle} onClick={() => handleOperator('/')}>
-              /
-            </button>
+            <button style={clearButtonStyle} onClick={handleClear}>C</button>
+            <button style={operatorButtonStyle} onClick={() => handleOperator('(')}>(</button>
+            <button style={operatorButtonStyle} onClick={() => handleOperator(')')}>)</button>
+            <button style={operatorButtonStyle} onClick={() => handleOperator('/')} data-operator="/">/</button>
             
             {/* Second Row */}
-            <CalculatorButton 
-              value="7" 
-              onClick={() => handleNumber('7')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="8" 
-              onClick={() => handleNumber('8')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="9" 
-              onClick={() => handleNumber('9')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="×" 
-              onClick={() => handleOperator('*')} 
-              variant="operator" 
-            />
-            {/* Hidden button for tests */}
-            <button style={hiddenButtonStyle} onClick={() => handleOperator('*')}>
-              *
-            </button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('7')}>7</button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('8')}>8</button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('9')}>9</button>
+            <button style={operatorButtonStyle} onClick={() => handleOperator('*')} data-operator="*">*</button>
             
             {/* Third Row */}
-            <CalculatorButton 
-              value="4" 
-              onClick={() => handleNumber('4')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="5" 
-              onClick={() => handleNumber('5')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="6" 
-              onClick={() => handleNumber('6')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="−" 
-              onClick={() => handleOperator('-')} 
-              variant="operator" 
-            />
-            {/* Hidden button for tests */}
-            <button style={hiddenButtonStyle} onClick={() => handleOperator('-')}>
-              -
-            </button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('4')}>4</button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('5')}>5</button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('6')}>6</button>
+            <button style={operatorButtonStyle} onClick={() => handleOperator('-')} data-operator="-">-</button>
             
             {/* Fourth Row */}
-            <CalculatorButton 
-              value="1" 
-              onClick={() => handleNumber('1')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="2" 
-              onClick={() => handleNumber('2')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="3" 
-              onClick={() => handleNumber('3')} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="+" 
-              onClick={() => handleOperator('+')} 
-              variant="operator" 
-            />
+            <button style={numberButtonStyle} onClick={() => handleNumber('1')}>1</button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('2')}>2</button>
+            <button style={numberButtonStyle} onClick={() => handleNumber('3')}>3</button>
+            <button style={operatorButtonStyle} onClick={() => handleOperator('+')} data-operator="+">+</button>
             
             {/* Fifth Row */}
-            <CalculatorButton 
-              value="0" 
-              onClick={() => handleNumber('0')} 
-              variant="number" 
-              colspan={2}
-            />
-            <CalculatorButton 
-              value="." 
-              onClick={handleDecimal} 
-              variant="number" 
-            />
-            <CalculatorButton 
-              value="=" 
-              onClick={handleCalculate} 
-              variant="equals" 
-            />
+            <button style={zeroButtonStyle} onClick={() => handleNumber('0')}>0</button>
+            <button style={numberButtonStyle} onClick={handleDecimal}>.</button>
+            <button style={equalsButtonStyle} onClick={handleCalculate}>=</button>
           </div>
         </div>
         

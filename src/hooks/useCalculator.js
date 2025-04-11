@@ -3,7 +3,7 @@ import { useState, useCallback } from 'react';
 export function useCalculator() {
   const [displayValue, setDisplayValue] = useState('');
   const [calculationResult, setCalculationResult] = useState('');
-  const [hasError, setHasError] = useState(false); // Add this line to track errors
+  const [hasError, setHasError] = useState(false);
 
   const handleNumber = useCallback((number) => {
     setHasError(false); // Clear error state when user enters new numbers
